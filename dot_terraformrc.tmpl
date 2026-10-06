@@ -1,0 +1,10 @@
+provider_installation {
+
+  dev_overrides {
+    "gitlabhq/gitlab" = "{{ .chezmoi.homeDir }}/.local/share/mise/installs/go/1.25.4/bin" 
+  } 
+
+  # Install all other providers from their registries as normal.
+  direct {}
+}
+

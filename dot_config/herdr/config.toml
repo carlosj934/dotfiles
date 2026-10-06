@@ -1,0 +1,105 @@
+onboarding = false
+
+[theme]
+name = "nord"
+
+# let the terminal background show through, like bg=default in tmux
+auto_switch = false
+[theme.custom]
+panel_bg = "reset"
+# neutral white, matching the Ghostty/Neovim override
+text = "#E7E7E7"
+# nord's #4C566A is too dark for the agent panel headers and the dimmed second rows
+overlay0 = "#8B93A3"
+
+[terminal]
+default_shell = "zsh"
+
+[keys]
+prefix = "ctrl+space"
+split_vertical = "prefix+\\"
+split_horizontal = "prefix+minus"
+
+# tmux muscle memory
+rename_tab = "prefix+comma"
+detach = "prefix+d"
+workspace_picker = ["prefix+s", "prefix+w"]
+settings = "prefix+shift+s"
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+switch_workspace = "prefix+shift+1..9"
+last_pane = ["prefix+;", "prefix+shift+l"]
+help = "prefix+/"
+
+# navigate mode: j/k through sessions, ctrl+h/j/k/l for panes
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+navigate_pane_left = "ctrl+h"
+navigate_pane_down = "ctrl+j"
+navigate_pane_up = "ctrl+k"
+navigate_pane_right = "ctrl+l"
+
+# cycle agent panes (prefix+o jumps to the one needing attention)
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
+focus_agent = "prefix+alt+1..9"
+
+# zoom on m like tmux, prefix+z still works too
+[[keys.command]]
+key = "prefix+m"
+type = "shell"
+command = "herdr pane zoom --current --toggle"
+description = "toggle zoom (tmux-style m)"
+
+# move the current tab, like tmux swap-window on prefix+S-Left/Right (see herdr/move-tab.sh)
+[[keys.command]]
+key = "prefix+shift+left"
+type = "shell"
+command = "~/.config/herdr/move-tab.sh left"
+description = "move tab left"
+
+[[keys.command]]
+key = "prefix+shift+right"
+type = "shell"
+command = "~/.config/herdr/move-tab.sh right"
+description = "move tab right"
+
+# seamless ctrl+h/j/k/l across panes and nvim splits (see herdr/nav.sh)
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/.config/herdr/nav.sh left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/.config/herdr/nav.sh down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/.config/herdr/nav.sh up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/.config/herdr/nav.sh right"
+description = "navigate right (vim/herdr)"
+
+[advanced]
+scrollback_limit_bytes = 100000000
+
+[experimental]
+pane_history = true
+
+[ui]
+# active pane border in Nord green, like the tmux active border
+accent = "#A3BE8C"
+agent_panel_sort = "priority"
+show_agent_labels_on_pane_borders = true
+
+[ui.toast]
+delivery = "herdr"

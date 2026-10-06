@@ -1,0 +1,11 @@
+#!/bin/sh
+# Re-runs whenever the mise config changes: {{ include "dot_config/mise/config.toml" | sha256sum }}
+set -eu
+
+[ -x /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+if command -v mise >/dev/null 2>&1; then
+  mise install
+else
+  echo "mise not found; skipping 'mise install'." >&2
+fi

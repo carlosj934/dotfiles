@@ -1,0 +1,16 @@
+#!/bin/bash
+# Re-runs whenever the Brewfile changes: {{ include "Brewfile" | sha256sum }}
+set -euo pipefail
+
+if ! xcode-select -p >/dev/null 2>&1; then
+  xcode-select --install
+  echo "Finish the Xcode tools installer, then run 'chezmoi apply' again." >&2
+  exit 1
+fi
+
+if ! command -v brew >/dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ]; then
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+brew bundle --file="{{ .chezmoi.sourceDir }}/Brewfile"

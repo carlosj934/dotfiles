@@ -1,0 +1,7 @@
+[tools]
+go = "1.26"          # latest 1.26.x patch release
+python = "3.13"
+node = "lts"         # also needed by some nvim plugins
+terraform = "latest"
+kubectl = "latest"
+jq = "latest"

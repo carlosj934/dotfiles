@@ -1,0 +1,13 @@
+[user]
+	email = ccorona@gitlab.com
+	name = Carlos Corona
+	signingkey = /Users/carlos/.ssh/id_rsa.pub
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

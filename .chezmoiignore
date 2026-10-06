@@ -1,0 +1,12 @@
+# Repo-only files (not copied into $HOME)
+README.md
+Brewfile
+
+# macOS junk
+**/.DS_Store
+
+# opencode: dependencies and machine-local state
+.config/opencode/node_modules
+.config/opencode/package-lock.json
+.config/opencode/service.json
+.config/opencode/*.backup.*

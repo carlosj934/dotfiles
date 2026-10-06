@@ -1,0 +1,54 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "gitlab": {
+        "type": "remote",
+        "url": "https://gitlab.com/api/v4/mcp"
+      },
+      "gitlab-orbit": {
+        "type": "remote",
+        "url": "https://gitlab.com/api/v4/orbit/mcp"
+      },
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {env:CONTEXT7_API_KEY}"
+        }
+      }
+    }
+  },
+  // Ordered rules where the last match wins, so blanket denies come before allow exceptions.
+  "permissions": [
+    // Allow cross-repo access under ~/Projects without external_directory prompts.
+    { "action": "external_directory", "resource": "~/Projects/*", "effect": "allow" },
+    // Trim the GitLab MCP tools to those with no good glab equivalent or in constant use.
+    { "action": "gitlab_*", "resource": "*", "effect": "deny" },
+    { "action": "gitlab_search", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_semantic_search", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_get_repository_file", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_list_repository_tree", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_get_merge_request", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_get_pipeline", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_get_job", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_get_work_item", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_save_work_item", "resource": "*", "effect": "allow" },
+    { "action": "gitlab_save_note", "resource": "*", "effect": "allow" }
+  ],
+  "providers": {
+    "anthropic": {
+      "settings": {
+        "headers": {
+          "sleev-provider": "anthropic",
+          "sleev-harness": "opencode"
+        },
+        "baseURL": "http://127.0.0.1:17321"
+      }
+    }
+  },
+  "plugins": [
+    "opencode-gitlab-auth"
+  ]
+}
