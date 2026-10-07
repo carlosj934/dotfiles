@@ -90,7 +90,7 @@ there in the repo, is the classic version of this.
 | A specific repo, file, issue, MR, work item, pipeline, release, branch, or project member — current state, before you build on it | **GitLab MCP first**, falling back to the **`glab` CLI** |
 | Callers, imports, dependencies, blast radius, cross-project/cross-entity joins, repo maps — before changing something with unclear reach | **Orbit** (`list_commands` → `invoke_command`) |
 | Public product documentation, tiers, supported versions, deprecations | **web_fetch on docs.gitlab.com**, found via `web_search` |
-| Anything external: standards, third-party tools, library/framework behavior | **web_search** + `web_fetch`, or `context7` if it's a library/framework/SDK question |
+| Anything external: standards, third-party tools, library/framework behavior | **web_search** + `web_fetch` |
 
 Combine freely. A "wire up CI to do X" task usually needs the current pipeline
 config (GitLab MCP / `glab`) *plus* whatever relationship context Orbit can
@@ -147,13 +147,12 @@ Guardrails when you do use it:
   callers. For a single known MR, project, or user, or a simple count,
   ordinary GitLab MCP tools are enough.
 
-### Web / Context7
+### Web
 
 - Prefer `docs.gitlab.com` and `handbook.gitlab.com` over blogs and
   aggregators for anything GitLab-specific.
-- For library/framework/SDK/CLI questions (Go modules, Python packages,
-  Terraform providers, etc.), prefer `context7` over general web search —
-  see the `context7` block in AGENTS.md for the resolve → query-docs steps.
+- For library/framework/SDK/CLI questions, prefer the project's official
+  documentation site over blogs and aggregators.
 - `web_search` results are snippets — `web_fetch` the page before treating it
   as ground truth for a design decision.
 
