@@ -9,6 +9,10 @@
       "gitlab-orbit": {
         "type": "remote",
         "url": "https://gitlab.com/api/v4/orbit/mcp"
+      },
+      "tilth": {
+        "type": "local",
+        "command": ["npx", "tilth", "--mcp"]
       }
     }
   },
