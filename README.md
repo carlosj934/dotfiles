@@ -2,6 +2,9 @@
 
 My macOS dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 
+## Current setup (10-07-2026)
+<img width="1510" height="874" alt="image" src="https://github.com/user-attachments/assets/fd4e420a-c25f-4156-b8d2-a7879584a01d" />
+
 ## What's in here
 
 | Tool | Files |
